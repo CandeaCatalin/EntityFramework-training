@@ -57,17 +57,17 @@ namespace SamuraiApp.UI
                 {
                     Name = "Dilo"
                 }
-         
+
             };
             _context.Samurais.Add(samurai);
             _context.SaveChanges();
         }
         private static void getSamuraiDetails()
         {
-            var samuraisWithQuotes = _context.Samurais.Include(s => s.Quotes).Include(s=> s.Horse).ToList();
+            var samuraisWithQuotes = _context.Samurais.Include(s => s.Quotes).Include(s => s.Horse).ToList();
             foreach (Samurai samurai in samuraisWithQuotes)
             {
-                Console.WriteLine(samurai.Id + samurai.Name + (samurai.Horse.Name !== null ? samurai.Horse.Name:""));
+                Console.WriteLine(samurai.Id + samurai.Name + (samurai.Horse.Name != null ? samurai.Horse.Name : ""));
                 foreach (Quote quote in samurai.Quotes)
                 {
                     Console.WriteLine(quote.Id + quote.SamuraiId + quote.Text);
