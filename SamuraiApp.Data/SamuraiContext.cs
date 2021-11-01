@@ -13,7 +13,7 @@ namespace SamuraiApp.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=SamuraiApp; Integrated Security=true;").LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-NMANGOQ\\SQLEXPRESS;Initial Catalog=SamuraiApp; Integrated Security=true;").LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
             //;
             .EnableSensitiveDataLogging();
         }
@@ -26,6 +26,8 @@ namespace SamuraiApp.Data
                 (bs => bs.HasOne<Battle>().WithMany(), bs => bs.HasOne<Samurai>().WithMany())
                 .Property(bs => bs.DataJoined)
                 .HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Horse>().ToTable("Horses");
+
         }
 
 
